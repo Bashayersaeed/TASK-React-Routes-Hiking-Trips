@@ -1,12 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Home from './components/Home';
+import TripDetail from './components/TripDetail';
+import TripsList from './components/TripsList';
+import Nav from './components/Nav';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+    <div>
+ <Nav /> <Home />,
+    </div>)
+   
+  },
+   {
+    path:"/TripsList",
+    element:(<>
+    <Nav /> <TripsList />
+    </>)
+  },
+  {
+    path:"/TripDetail/:tripId",
+    element:(<>
+   <Nav /> <TripDetail/>
+    </>)
+  }
+]);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+     <RouterProvider router={router} />
   </React.StrictMode>,
   document.getElementById('root')
 );
